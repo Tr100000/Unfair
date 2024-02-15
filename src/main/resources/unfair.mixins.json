@@ -1,0 +1,31 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "io.github.tr100000.unfair.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"AbstractFurnaceBlockEntityMixin",
+		"BedBlockMixin",
+		"BlockMixin",
+		"DifficultyUpdateC2SPacketMixin",
+		"EntityMixin",
+		"EntityTypeMixin",
+		"FoodComponentMixin",
+		"ItemEntityMixin",
+		"ItemSettingsMixin",
+		"LivingEntityMixin",
+		"MinecraftServerMixin",
+		"PlayerEntityMixin"
+	],
+	"client": [
+		"client.MinecraftClientMixin",
+		"client.RecipeBookWidgetAccessor",
+		"client.RecipeBookWidgetMixin",
+		"client.ScreenAccessor",
+		"client.ScreenMixin",
+		"client.SplashTextRendererMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

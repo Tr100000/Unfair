@@ -1,0 +1,5 @@
+{
+    "death.attack.generic_unfair": "%s was killed by unfairness.",
+    "death.attack.bed": "%s tried to sleep.",
+    "death.attack.collect_experience": "%s tried to collect experience."
+}

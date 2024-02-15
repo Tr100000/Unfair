@@ -1,0 +1,39 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "io.github.tr100000",
+		"id": "unfair",
+		"version": "${version}",
+		"metadata": {
+			"name": "Unfair",
+			"description": "Making Minecraft unplayable since 2023.",
+			"contributors": {
+				"Tr10000": "Owner"
+			},
+			"contact": {
+				"sources": "https://github.com/Tr100000/Unfair",
+				"issues": "https://github.com/Tr100000/Unfair/issues"
+			},
+			"license": "MIT"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"entrypoints": {
+			"init": "io.github.tr100000.unfair.Unfair"
+		},
+		"depends": [
+			{
+				"id": "quilt_loader",
+				"versions": ">=0.20.0"
+			},
+			{
+				"id": "quilted_fabric_api",
+				"versions": ">=7.4.0"
+			},
+			{
+				"id": "minecraft",
+				"versions": ">=1.20.1"
+			}
+		]
+	},
+	"mixin": "unfair.mixins.json"
+}
