@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.entity.LivingEntity;
 
 @Mixin(LivingEntity.class)
-public class LivingEntityMixin {
+public abstract class LivingEntityMixin extends EntityMixin {
     @Inject(method = "hasNoDrag", at = @At("HEAD"), cancellable = true)
     private void hasDrag(CallbackInfoReturnable<Boolean> info) {
         if (Unfair.enabled) {

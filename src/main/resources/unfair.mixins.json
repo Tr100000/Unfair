@@ -15,6 +15,7 @@
     "PlayerEntityMixin"
   ],
   "client": [
+    "client.CubeMapRendererMixin",
     "client.GameRendererMixin",
     "client.MinecraftClientMixin",
     "client.RecipeBookWidgetMixin",

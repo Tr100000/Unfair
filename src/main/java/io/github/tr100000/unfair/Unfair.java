@@ -11,7 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 public class Unfair implements ModInitializer {
 	public static ModContainer mod;
@@ -19,6 +23,8 @@ public class Unfair implements ModInitializer {
 	public static final Path CONFIG_PATH = QuiltLoader.getConfigDir().resolve("unfair.txt");
 	public static final String MODID = "unfair";
 	public static final Logger LOGGER = LoggerFactory.getLogger("Unfair Mod");
+
+	public static final Item JUNK_ITEM = Registry.register(Registries.ITEM, id("junk"), new Item(new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC)));
 
 	@Override
 	public void onInitialize(ModContainer mod) {

@@ -16,7 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World.ExplosionSourceType;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityMixin {
+public abstract class PlayerEntityMixin extends LivingEntityMixin {
     @Inject(method = "isInvulnerableTo", at = @At("HEAD"), cancellable = true)
     private void isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> info) {
         if (Unfair.enabled) {

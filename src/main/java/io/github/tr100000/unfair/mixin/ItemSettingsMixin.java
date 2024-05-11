@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.minecraft.item.Item;
 
 @Mixin(Item.Settings.class)
-public class ItemSettingsMixin {
+public abstract class ItemSettingsMixin {
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo info) {
         if (Unfair.enabled) {

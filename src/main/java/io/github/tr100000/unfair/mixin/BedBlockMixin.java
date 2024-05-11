@@ -14,7 +14,7 @@ import net.minecraft.block.BedBlock;
 import net.minecraft.entity.Entity;
 
 @Mixin(BedBlock.class)
-public class BedBlockMixin {
+public abstract class BedBlockMixin extends BlockMixin {
     @Inject(method = "isBedWorking", at = @At("HEAD"), cancellable = true)
     private static void broken(CallbackInfoReturnable<Boolean> info) {
         if (Unfair.enabled) {

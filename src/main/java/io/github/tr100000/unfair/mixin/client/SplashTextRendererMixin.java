@@ -1,6 +1,7 @@
 package io.github.tr100000.unfair.mixin.client;
 
 import io.github.tr100000.unfair.Unfair;
+import io.github.tr100000.unfair.things.ScreenShuffle;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,14 +16,14 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 
 @Mixin(SplashTextRenderer.class)
-public class SplashTextRendererMixin {
+public abstract class SplashTextRendererMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void unfair(DrawContext draw, int screenWidth, TextRenderer textRenderer, int alpha, CallbackInfo info) {
         if (Unfair.enabled) {
             final String splashText = "Unfair!";
             draw.getMatrices().push();
             draw.getMatrices().translate((float)screenWidth / 2.0F + 123.0F, 69.0F, 0.0F);
-            draw.getMatrices().multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-20.0F));
+            draw.getMatrices().multiply(RotationAxis.POSITIVE_Z.rotation(ScreenShuffle.getRotation()));
             float f = 1.8F - MathHelper.abs(MathHelper.sin((float)(Util.getMeasuringTimeMs() % 1000L) / 100.0F) * 0.1F);
             f *= 100.0F / (float)(textRenderer.getWidth(splashText) + 32);
             draw.getMatrices().scale(f, f, f);

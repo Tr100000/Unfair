@@ -11,7 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.world.explosion.Explosion;
 
 @Mixin(Block.class)
-public class BlockMixin {
+public abstract class BlockMixin {
     @Inject(method = "shouldDropItemsOnExplosion", at = @At("HEAD"), cancellable = true)
     private void shouldDropItemsOnExplosion(Explosion explosion, CallbackInfoReturnable<Boolean> info) {
         if (Unfair.enabled) {

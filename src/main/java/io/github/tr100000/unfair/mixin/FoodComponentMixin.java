@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.item.FoodComponent;
 
 @Mixin(FoodComponent.class)
-public class FoodComponentMixin {
+public abstract class FoodComponentMixin {
     @Inject(method = "getHunger", at = @At("RETURN"), cancellable = true)
     private void hungry(CallbackInfoReturnable<Integer> info) {
         if (Unfair.enabled) {
