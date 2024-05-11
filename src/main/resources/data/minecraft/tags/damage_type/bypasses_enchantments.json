@@ -1,8 +1,4 @@
 {
-    "replace": false,
-    "values": [
-        "unfair:generic_unfair",
-        "unfair:bed",
-        "unfair:collect_experience"
-    ]
+  "replace": false,
+  "values": ["unfair:generic_unfair", "unfair:bed", "unfair:collect_experience"]
 }

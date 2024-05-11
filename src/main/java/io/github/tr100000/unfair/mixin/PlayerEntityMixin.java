@@ -47,22 +47,8 @@ public class PlayerEntityMixin {
         }
     }
 
-    @Inject(method = "getMaxNetherPortalTime", at = @At("HEAD"), cancellable = true)
-    private void longNetherPortalTime(CallbackInfoReturnable<Integer> info) {
-        if (Unfair.enabled) {
-            info.setReturnValue(400);
-        }
-    }
-
-    @Inject(method = "getDamageTiltStrength", at = @At("HEAD"), cancellable = true)
-    private void damageTilt(CallbackInfoReturnable<Float> info) {
-        if (Unfair.enabled) {
-            info.setReturnValue(100.0F);
-        }
-    }
-
     @ModifyVariable(method = "damage", at = @At("HEAD"), ordinal = 0)
     private float oops(float damage) {
-        return PlayerEntity.MAX_HEALTH * 1000;
+        return 9999;
     }
 }

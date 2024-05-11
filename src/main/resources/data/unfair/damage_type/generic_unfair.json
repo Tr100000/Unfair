@@ -1,5 +1,5 @@
 {
-    "exhaustion": 100000,
-    "message_id": "generic_unfair",
-    "scaling": "never"
+  "exhaustion": 100000,
+  "message_id": "generic_unfair",
+  "scaling": "never"
 }

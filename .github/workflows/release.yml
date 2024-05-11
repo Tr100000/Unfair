@@ -16,8 +16,8 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"
           check-latest: true
       - name: Build Artifacts
         run: ./gradlew build
@@ -29,5 +29,5 @@ jobs:
       - name: Upload to GitHub
         uses: AButler/upload-release-assets@v3.0
         with:
-          files: 'build/libs/*[0-9].jar'
+          files: "build/libs/*[0-9].jar"
           repo-token: ${{ secrets.GITHUB_TOKEN }}

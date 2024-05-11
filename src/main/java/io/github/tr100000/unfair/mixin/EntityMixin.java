@@ -26,7 +26,7 @@ public class EntityMixin {
         }
     }
 
-    @Inject(method = "getMaxFreezeTicks", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getMinFreezeDamageTicks", at = @At("HEAD"), cancellable = true)
     private void freeze(CallbackInfoReturnable<Integer> info) {
         if (Unfair.enabled) {
             info.setReturnValue(10);

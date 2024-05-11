@@ -8,8 +8,7 @@ import org.joml.Vector2i;
 
 public final class ScreenShuffle {
     private ScreenShuffle() {}
-    public static int timeForEachButton = 12;
-    public static int timeValue;
+    public static int timeForEachButton = 20;
     public static int otherTimeThing;
 
     public static List<Vector2i> positions = new ArrayList<>();

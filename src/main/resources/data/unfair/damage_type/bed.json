@@ -1,5 +1,5 @@
 {
-    "exhaustion": 100000,
-    "message_id": "bed",
-    "scaling": "never"
+  "exhaustion": 100000,
+  "message_id": "bed",
+  "scaling": "never"
 }

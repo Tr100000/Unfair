@@ -21,7 +21,7 @@ public class LivingEntityMixin {
     @Inject(method = "getStepHeight", at = @At("HEAD"), cancellable = true)
     private void getStepHeight(CallbackInfoReturnable<Float> info) {
         if (Unfair.enabled) {
-            info.setReturnValue(100.0F);
+            info.setReturnValue(0.0F);
         }
     }
 }

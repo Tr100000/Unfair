@@ -19,7 +19,6 @@ public class MinecraftClientMixin {
             ScreenShuffle.otherTimeThing++;
             if (ScreenShuffle.otherTimeThing >= ScreenShuffle.timeForEachButton) {
                 ScreenShuffle.otherTimeThing = 0;
-                ScreenShuffle.timeValue++;
                 ScreenShuffle.shufflePositions();
             }
         }
