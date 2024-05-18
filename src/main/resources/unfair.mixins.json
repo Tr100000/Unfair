@@ -17,6 +17,7 @@
   "client": [
     "client.CubeMapRendererMixin",
     "client.GameRendererMixin",
+    "client.InGameHudMixin",
     "client.MinecraftClientMixin",
     "client.RecipeBookWidgetMixin",
     "client.ScreenMixin",

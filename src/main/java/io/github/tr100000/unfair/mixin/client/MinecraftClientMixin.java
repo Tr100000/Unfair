@@ -1,7 +1,7 @@
 package io.github.tr100000.unfair.mixin.client;
 
 import io.github.tr100000.unfair.Unfair;
-import io.github.tr100000.unfair.things.ScreenShuffle;
+import io.github.tr100000.unfair.things.ScreenUtils;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,20 +17,22 @@ public abstract class MinecraftClientMixin {
     @Shadow
     abstract float getTickDelta();
 
-    @Inject(method = "tick", at = @At("HEAD"))
-    private void pleaseDont(CallbackInfo info) {
+    @Inject(method = "render", at = @At("HEAD"))
+    private void render(boolean tick, CallbackInfo info) {
         if (Unfair.enabled) {
-            ScreenShuffle.clientTickDelta = getTickDelta();
-            ScreenShuffle.buttonTimeValue++;
-            if (ScreenShuffle.buttonTimeValue >= ScreenShuffle.timeForEachButton) {
-                ScreenShuffle.buttonTimeValue = 0;
-                ScreenShuffle.shufflePositions();
+            ScreenUtils.clientTickDelta = getTickDelta();
+            if (tick) {
+                ScreenUtils.buttonTimeValue++;
+                if (ScreenUtils.buttonTimeValue >= ScreenUtils.timeForEachButton) {
+                    ScreenUtils.buttonTimeValue = 0;
+                    ScreenUtils.shufflePositions();
+                }
             }
         }
     }
 
     @Inject(method = "setScreen", at = @At("RETURN"))
     private void setScreen(Screen screen, CallbackInfo info) {
-        ScreenShuffle.positions.clear();
+        ScreenUtils.positions.clear();
     }
 }

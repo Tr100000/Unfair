@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import io.github.tr100000.unfair.Unfair;
-import io.github.tr100000.unfair.things.ScreenShuffle;
+import io.github.tr100000.unfair.things.ScreenUtils;
 
 import org.joml.Vector2i;
 import org.spongepowered.asm.mixin.Final;
@@ -39,22 +39,22 @@ public abstract class ScreenMixin {
         if (Unfair.enabled) {
             MatrixStack matrices = draw.getMatrices();
             matrices.translate(width / 2f, height / 2f, 0);
-            matrices.multiply(RotationAxis.POSITIVE_Z.rotation(ScreenShuffle.getRotation(delta)));
+            matrices.multiply(RotationAxis.POSITIVE_Z.rotation(ScreenUtils.getRotation(delta)));
             matrices.translate(-width / 2f, -height / 2f, 0);
 
             List<Widget> widgets = getWidgets();
 
-            if (ScreenShuffle.positions.isEmpty()) {
+            if (ScreenUtils.positions.isEmpty()) {
                 updateStoredPositions(widgets);
             }
 
             for (int i = 0; i < widgets.size(); i++) {
-                if (i >= ScreenShuffle.positions.size()) {
+                if (i >= ScreenUtils.positions.size()) {
                     updateStoredPositions(widgets);
                     break;
                 }
                 Widget widget = widgets.get(i);
-                Vector2i pos = ScreenShuffle.positions.get(i);
+                Vector2i pos = ScreenUtils.positions.get(i);
                 widget.setPosition(pos.x() - widget.getWidth() / 2, pos.y() - widget.getHeight() / 2);
             }
         }
@@ -74,10 +74,10 @@ public abstract class ScreenMixin {
 
     @Unique
     private void updateStoredPositions(List<Widget> widgets) {
-        ScreenShuffle.positions.clear();
+        ScreenUtils.positions.clear();
         widgets.forEach(widget -> {
-            ScreenShuffle.positions.add(new Vector2i(widget.getX() + widget.getWidth() / 2, widget.getY() + widget.getHeight() / 2));
+            ScreenUtils.positions.add(new Vector2i(widget.getX() + widget.getWidth() / 2, widget.getY() + widget.getHeight() / 2));
         });
-        ScreenShuffle.shufflePositions();
+        ScreenUtils.shufflePositions();
     }
 }

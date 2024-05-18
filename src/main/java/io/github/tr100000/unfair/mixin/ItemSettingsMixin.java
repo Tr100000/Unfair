@@ -21,12 +21,12 @@ public abstract class ItemSettingsMixin {
         }
     }
 
-    @ModifyVariable(method = "maxCount", at = @At("HEAD"), ordinal = 0)
+    @ModifyVariable(method = "maxCount", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private int realism(int count) {
         return Unfair.enabled ? 1 : count;
     }
 
-    @ModifyVariable(method = "maxDamage", at = @At("HEAD"), ordinal = 0)
+    @ModifyVariable(method = "maxDamage", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private int realism2(int max) {
         return Unfair.enabled ? 1 : max;
     }

@@ -47,7 +47,7 @@ public abstract class PlayerEntityMixin extends LivingEntityMixin {
         }
     }
 
-    @ModifyVariable(method = "damage", at = @At("HEAD"), ordinal = 0)
+    @ModifyVariable(method = "damage", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private float oops(float damage) {
         return 9999;
     }

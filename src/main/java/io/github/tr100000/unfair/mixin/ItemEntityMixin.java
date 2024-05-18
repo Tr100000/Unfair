@@ -19,7 +19,7 @@ public abstract class ItemEntityMixin extends EntityMixin {
     @Shadow
     abstract Entity getOwner();
 
-    @ModifyVariable(method = "setStack", at = @At("HEAD"), ordinal = 0)
+    @ModifyVariable(method = "setStack", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private ItemStack oops(ItemStack stack) {
         return Unfair.enabled ? new ItemStack(Unfair.JUNK_ITEM, stack.getCount()) : stack;
     }

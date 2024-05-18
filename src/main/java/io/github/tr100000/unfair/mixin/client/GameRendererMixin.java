@@ -1,7 +1,7 @@
 package io.github.tr100000.unfair.mixin.client;
 
 import io.github.tr100000.unfair.Unfair;
-import io.github.tr100000.unfair.things.ScreenShuffle;
+import io.github.tr100000.unfair.things.ScreenUtils;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +23,7 @@ public abstract class GameRendererMixin {
     @Inject(method = "renderWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/RotationAxis;rotationDegrees(F)Lorg/joml/Quaternionf;", ordinal = 2))
     private void renderWorld(float tickDelta, long limitTime, MatrixStack matrices, CallbackInfo callback) {
         if (Unfair.enabled && !client.player.isOnGround()) {
-            matrices.multiply(RotationAxis.NEGATIVE_Z.rotation(ScreenShuffle.getRotation(tickDelta)));
+            matrices.multiply(RotationAxis.NEGATIVE_Z.rotation(ScreenUtils.getRotation(tickDelta)));
         }
     }
 }

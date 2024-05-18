@@ -8,10 +8,10 @@ import org.joml.Vector2i;
 
 import net.minecraft.util.math.MathHelper;
 
-public final class ScreenShuffle {
-    private ScreenShuffle() {}
+public final class ScreenUtils {
+    private ScreenUtils() {}
     public static float clientTickDelta;
-    public static final int timeForEachButton = 30;
+    public static final int timeForEachButton = 80;
     public static int buttonTimeValue;
 
     public static List<Vector2i> positions = new ArrayList<>();
