@@ -19,6 +19,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.world.LevelLoadingScreen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.RotationAxis;
@@ -37,10 +38,7 @@ public abstract class ScreenMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void uhoh(DrawContext draw, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if (Unfair.enabled) {
-            MatrixStack matrices = draw.getMatrices();
-            matrices.translate(width / 2f, height / 2f, 0);
-            matrices.multiply(RotationAxis.POSITIVE_Z.rotation(ScreenUtils.getRotation(delta)));
-            matrices.translate(-width / 2f, -height / 2f, 0);
+            rotate(draw, ScreenUtils.getRotation(delta));
 
             List<Widget> widgets = getWidgets();
 
@@ -58,6 +56,11 @@ public abstract class ScreenMixin {
                 widget.setPosition(pos.x() - widget.getWidth() / 2, pos.y() - widget.getHeight() / 2);
             }
         }
+        else {
+            if ((Screen)(Object)this instanceof LevelLoadingScreen) {
+                rotate(draw, (float)Math.PI);
+            }
+        }
     }
 
     @Inject(method = "resize", at = @At("TAIL"))
@@ -65,6 +68,14 @@ public abstract class ScreenMixin {
         if (this.width != width || this.height != height) {
             updateStoredPositions(getWidgets());
         }
+    }
+
+    @Unique
+    private void rotate(DrawContext draw, float rad) {
+            MatrixStack matrices = draw.getMatrices();
+            matrices.translate(width / 2f, height / 2f, 0);
+            matrices.multiply(RotationAxis.POSITIVE_Z.rotation(rad));
+            matrices.translate(-width / 2f, -height / 2f, 0);
     }
 
     @Unique

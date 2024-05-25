@@ -11,12 +11,21 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.World.ExplosionSourceType;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntityMixin {
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void init(World world, BlockPos pos, float yaw, GameProfile gameProfile, CallbackInfo callback) {
+        Unfair.enabled = true;
+    }
+
     @Inject(method = "isInvulnerableTo", at = @At("HEAD"), cancellable = true)
     private void isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> info) {
         if (Unfair.enabled) {
