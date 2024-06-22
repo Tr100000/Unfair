@@ -9,6 +9,6 @@ jobs:
   build:
     uses: Tr100000/modding-utils/.github/workflows/release.yml@main
     with:
-      java-version: "17"
+      java-version: "21"
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}

@@ -5,4 +5,4 @@ jobs:
   build:
     uses: Tr100000/modding-utils/.github/workflows/push.yml@main
     with:
-      java-version: "17"
+      java-version: "21"
