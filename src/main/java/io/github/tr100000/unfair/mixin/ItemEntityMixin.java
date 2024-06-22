@@ -1,6 +1,7 @@
 package io.github.tr100000.unfair.mixin;
 
 import io.github.tr100000.unfair.Unfair;
+import io.github.tr100000.unfair.things.UnfairUtils;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,7 +22,7 @@ public abstract class ItemEntityMixin extends EntityMixin {
 
     @ModifyVariable(method = "setStack", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private ItemStack oops(ItemStack stack) {
-        return Unfair.enabled ? new ItemStack(Unfair.JUNK_ITEM, stack.getCount()) : stack;
+        return Unfair.enabled ? new ItemStack(UnfairUtils.getRandomItem(), stack.getCount()) : stack;
     }
     
     @Inject(method = "tick", at = @At("TAIL"))

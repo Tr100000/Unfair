@@ -1,6 +1,7 @@
 package io.github.tr100000.unfair.mixin;
 
 import io.github.tr100000.unfair.Unfair;
+import io.github.tr100000.unfair.things.UnfairUtils;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -12,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
@@ -21,7 +21,7 @@ public abstract class EntityMixin {
 
     @ModifyVariable(method = "dropStack", at = @At("HEAD"), ordinal = 0)
     private ItemStack replaceWithDirt(ItemStack stack) {
-        return Unfair.enabled ? new ItemStack(Items.DIRT, stack.getCount()) : stack;
+        return Unfair.enabled ? new ItemStack(UnfairUtils.getRandomItem(), stack.getCount()) : stack;
     }
 
     @Inject(method = "getMaxAir", at = @At("HEAD"), cancellable = true)

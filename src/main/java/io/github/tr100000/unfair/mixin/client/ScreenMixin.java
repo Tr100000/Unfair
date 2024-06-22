@@ -38,7 +38,7 @@ public abstract class ScreenMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void uhoh(DrawContext draw, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if (Unfair.enabled) {
-            rotate(draw, ScreenUtils.getRotation(delta));
+            rotate(draw.getMatrices(), ScreenUtils.getRotation());
 
             List<Widget> widgets = getWidgets();
 
@@ -58,7 +58,7 @@ public abstract class ScreenMixin {
         }
         else {
             if ((Screen)(Object)this instanceof LevelLoadingScreen) {
-                rotate(draw, (float)Math.PI);
+                rotate(draw.getMatrices(), (float)Math.PI);
             }
         }
     }
@@ -71,11 +71,10 @@ public abstract class ScreenMixin {
     }
 
     @Unique
-    private void rotate(DrawContext draw, float rad) {
-            MatrixStack matrices = draw.getMatrices();
-            matrices.translate(width / 2f, height / 2f, 0);
-            matrices.multiply(RotationAxis.POSITIVE_Z.rotation(rad));
-            matrices.translate(-width / 2f, -height / 2f, 0);
+    private void rotate(MatrixStack matrices, float rad) {
+        matrices.translate(width / 2f, height / 2f, 0);
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotation(rad));
+        matrices.translate(-width / 2f, -height / 2f, 0);
     }
 
     @Unique

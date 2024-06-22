@@ -11,6 +11,7 @@ import net.minecraft.util.math.MathHelper;
 public final class ScreenUtils {
     private ScreenUtils() {}
     public static float clientTickDelta;
+    public static boolean clientPaused;
     public static final int timeForEachButton = 80;
     public static int buttonTimeValue;
 

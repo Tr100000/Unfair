@@ -1,10 +1,10 @@
 plugins {
+	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
-	id 'org.quiltmc.loom' version "${loom_version}"
 }
 
 base.archivesName = project.archives_base_name
-version = "${project.version}+${minecraft_version}"
+version = "$project.version+${minecraft_version}"
 
 repositories {
 	maven {
@@ -17,48 +17,30 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings "net.fabricmc:yarn:${minecraft_version}+build.${yarn_version}:v2"
-    modImplementation "org.quiltmc:quilt-loader:${loader_version}"
+	minecraft "com.mojang:minecraft:${minecraft_version}"
+	mappings "net.fabricmc:yarn:${minecraft_version}+build.${yarn_version}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}+${minecraft_version}"
 
-    modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
-    modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${qfapi_version}-${minecraft_version}"
-	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api-deprecated:${qfapi_version}-${minecraft_version}"
-
-    modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
-}
-
-project.configurations.all {
-	exclude(group: "net.fabricmc", module: "fabric-loader")
-	exclude(group: "net.fabricmc.fabric-api")
-}
-
-loom {
-	mods {
-		"unfair" {
-			sourceSet("main")
-		}
-	}
+	modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
 }
 
 processResources {
 	inputs.property 'version', version
 
-	filesMatching('quilt.mod.json') {
+	filesMatching('fabric.mod.json') {
 		expand 'version': version
 	}
 }
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.encoding = 'UTF-8'
-	it.options.release = 17
+	it.options.release = 21
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
-
-	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
@@ -73,7 +55,8 @@ publishing {
 			from components.java
 		}
 	}
-	repositories {
 
+	repositories {
+		// Add repositories to publish to here.
 	}
 }
