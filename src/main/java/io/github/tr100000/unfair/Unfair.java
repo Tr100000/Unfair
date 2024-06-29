@@ -7,14 +7,14 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 
 public class Unfair implements ModInitializer {
-	public static boolean enabled = false;
-	public static final String MODID = "unfair";
-	public static final Logger LOGGER = LoggerFactory.getLogger("Unfair Mod");
+    public static boolean enabled = false;
+    public static final String MODID = "unfair";
+    public static final Logger LOGGER = LoggerFactory.getLogger("Unfair Mod");
 
-	@Override
-	public void onInitialize() {}
+    @Override
+    public void onInitialize() {}
 
-	public static Identifier id(String path) {
-		return Identifier.of(MODID, path);
-	}
+    public static Identifier id(String path) {
+        return Identifier.of(MODID, path);
+    }
 }

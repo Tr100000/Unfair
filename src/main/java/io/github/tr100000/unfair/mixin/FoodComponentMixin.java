@@ -24,7 +24,7 @@ public abstract class FoodComponentMixin {
             info.setReturnValue(0F);
         }
     }
-    
+
     @Inject(method = "canAlwaysEat", at = @At("HEAD"), cancellable = true)
     private void setAlwaysEdible(CallbackInfoReturnable<Boolean> info) {
         if (Unfair.enabled) {

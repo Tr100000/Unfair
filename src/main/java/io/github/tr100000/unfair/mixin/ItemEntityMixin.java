@@ -24,7 +24,7 @@ public abstract class ItemEntityMixin extends EntityMixin {
     private ItemStack oops(ItemStack stack) {
         return Unfair.enabled ? new ItemStack(UnfairUtils.getRandomItem(), stack.getCount()) : stack;
     }
-    
+
     @Inject(method = "tick", at = @At("TAIL"))
     private void tick(CallbackInfo callback) {
         Entity owner = getOwner();

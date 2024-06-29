@@ -39,14 +39,14 @@ public abstract class PlayerEntityMixin extends LivingEntityMixin {
             info.setReturnValue(true);
         }
     }
-    
+
     @Inject(method = "shouldDamagePlayer", at = @At("HEAD"), cancellable = true)
     private void shouldDamagePlayer(PlayerEntity player, CallbackInfoReturnable<Boolean> info) {
         if (Unfair.enabled) {
             info.setReturnValue(true);
         }
     }
-    
+
     @Inject(method = "addExperience", at = @At("HEAD"))
     private void addExperience(int experience, CallbackInfo info) {
         if (Unfair.enabled && experience > 0) {
